@@ -1,0 +1,133 @@
+.recipe__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-footer);
+}
+
+
+.recipe__footer-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #fff;
+    text-align: center;
+    margin-bottom: 5rem;
+    cursor: pointer;
+}
+
+.recipe__footer-btn p {
+    font-size: 18px;
+    font-family: var(--font-family);
+    line-height: 21px;
+    color: #fff;
+    word-spacing: 1px;
+}
+
+.recipe__footer-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+}
+
+.recipe__footer-links div {
+    width: 250px;
+    margin: 2rem;
+}
+
+.recipe__footer-links_logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe__footer-links_logo img {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1rem;
+    margin-top: 10vh;
+}
+
+.recipe__footer-links_logo p {
+    font-family: var(--font-family);
+    font-size: 12px;
+    line-height: 15px;
+    color: #fff;
+}
+
+.recipe__footer-links_div {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.recipe__footer-links_div h4 {
+    font-size: 14px;
+    line-height: 17px;
+    font-family: var(--font-family);
+    color: #fff;
+    margin-bottom: 0.9rem;
+}
+
+.recipe__footer-links_div p {
+    font-size: 12px;
+    line-height: 15px;
+    font-family: var(--font-family);
+    color: #fff;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+.recipe__footer-copyright {
+    margin-top: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.recipe__footer-copyright p {
+    font-size: 17px;
+    font-family: var(--font-family);
+    line-height: 15px;
+    color: #fff;
+}
+
+@media screen and (max-width: 850px) {
+    .recipe__footer-heading h1 {
+        font-size: 44px;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .recipe__footer-heading h1 {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    .recipe__footer-links div {
+        margin: 1rem 0;
+    }
+
+    .recipe__footer-btn p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .recipe__footer-links_logo img {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .recipe__footer-heading h1 {
+        font-size: 27px;
+        line-height: 38px;
+    }
+    .recipe__footer-links_logo img {
+        margin-top: 0;
+    }
+}
