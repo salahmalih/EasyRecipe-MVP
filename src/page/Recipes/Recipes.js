@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {AllRecipe, Pagination} from '../../components'; // Import your AllRecipe component
 
-
 function Recipes() {
   const [recipes, setRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

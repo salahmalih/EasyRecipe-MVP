@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import { useLocation, Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../logo.png';
 import './navbar.css';
 
@@ -16,13 +16,45 @@ const Navbar = () => {
     }
   }, [toggleMenu]);
 
+  // Helper component to handle navigation links
   const NavLink = ({ to, children }) => {
     const isActive = location.pathname === to;
+
+    const handleClick = () => {
+      if (toggleMenu) {
+        setToggleMenu(false); // Close the menu when a link is clicked
+      }
+    };
+
     return (
       <li>
-        <Link to={to} className={` page-link_A page-item ${isActive ? 'active' : ''}`}>
+        <Link to={to} className={`page-link_A page-item ${isActive ? 'active' : ''}`} onClick={handleClick}>
           {children}
         </Link>
+      </li>
+    );
+  };
+
+  // Component to handle navigation and scrolling to sections
+  const NavPages = ({ to, children, scrollTo }) => {
+    const handleClick = (e) => {
+      e.preventDefault();
+      if (scrollTo) {
+        const element = document.querySelector(scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      if (toggleMenu) {
+        setToggleMenu(false); // Close the menu when a link is clicked
+      }
+    };
+
+    return (
+      <li>
+        <a href={to} className="page-link_A page-item" onClick={handleClick}>
+          {children}
+        </a>
       </li>
     );
   };
@@ -37,6 +69,7 @@ const Navbar = () => {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/recipes">All Recipes</NavLink>
           <NavLink to="/favourite">Favourite</NavLink>
+          <NavPages to="/" scrollTo="#aboutus">What is EasyRecipe?</NavPages>
         </ul>
       </div>
       <div className="recipe__navbar-sign">
@@ -53,6 +86,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
               <NavLink to="/recipes">All Recipes</NavLink>
               <NavLink to="/favourite">Favourite</NavLink>
+              <NavPages to="/" scrollTo="#aboutus">What is EasyRecipe?</NavPages>
             </ul>
             <div className="recipe__navbar-menu_container-links-sign">
               <p>Sign in</p>

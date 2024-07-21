@@ -1,10 +1,11 @@
 import React from 'react'
 
+
 function NoPage  ()  {
   return (
-    <div>
+    <div className="gradient__bg">
       <h1 >NoPage</h1>
-    </div>
+      </div>
   )
 }
 
