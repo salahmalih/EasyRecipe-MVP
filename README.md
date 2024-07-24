@@ -27,9 +27,7 @@ EasyRecipe is a web application designed to help users efficiently manage and di
    cd easyrecipe/backend
    ```
 3. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+
 4. Configure the database connection in `app.py`:
    ```python
    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:''@localhost/db_easyrecipe'
