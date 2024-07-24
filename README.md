@@ -43,7 +43,7 @@ EasyRecipe is a web application designed to help users efficiently manage and di
 ### Frontend Setup
 1. Navigate to the frontend directory:
    ```bash
-   cd easyrecipe/frontend
+   cd easyrecipe/
    ```
 2. Install Node.js dependencies:
    ```bash
