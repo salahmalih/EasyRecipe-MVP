@@ -94,6 +94,6 @@ In the project directory, you can run:
 - **`npm run eject`**: Removes this tool and copies build dependencies, configuration files, and scripts into the project. This is a one-way operation.
 
 ## About Me
-I’m Salah Malih, a software developer passionate about building user-friendly web applications. Connect with me on [LinkedIn](http://linkedin.com/in/salah-malih).
+I’m Salah Malih, a software developer passionate about building  web applications. Connect with me on [LinkedIn](http://linkedin.com/in/salah-malih).
 
 ```
