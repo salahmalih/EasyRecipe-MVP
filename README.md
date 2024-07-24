@@ -20,7 +20,7 @@ EasyRecipe is a web application designed to help users efficiently manage and di
 ### Backend Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/easyrecipe.git
+   git clone https://github.com/salahmalih/EasyRecipe-MVP.git
    ```
 2. Navigate to the backend directory:
    ```bash
