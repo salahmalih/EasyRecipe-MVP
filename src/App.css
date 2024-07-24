@@ -94,4 +94,8 @@ a {
 html {
   scroll-behavior: smooth;
 }
+.app-container-login{
+  background-color: #fff;
+}
+
 

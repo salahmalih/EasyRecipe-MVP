@@ -9,6 +9,7 @@ import Form_Recipes_update from './page/dashbord/form/recips_form_update';
 import Form_ingredients from './page/dashbord/form/ingredients_form';
 import Users from './page/dashbord/Users/users';
 import {Navbar, Footer} from './components/';
+import AuthForm from './page/Login/login'
 
 import './App.css';
 
@@ -75,10 +76,12 @@ function App() {
         <Routes>
         <Route index element = { <><Navbar /><Home /><Footer /></>} />
           <Route exact path="/" element={ <><Navbar /><Home /><Footer /></>} />
+          <Route exact path="/home" element={ <><Navbar /><Home /><Footer /></>} />
           <Route path="/recipes" element={ <><Navbar /><Recipes /><Footer /></>} />
           <Route path="/favourite" element={ <><Navbar /><Favourite /><Footer /></>}/>
           <Route path="*" element={  <><Navbar /><NoPage /><Footer /></>}/>
           <Route path="/admin" element={ <LoginAdmin />}/>
+          <Route path="/login" element={ <AuthForm />}/>
           <Route path="/Create_Recipes" element={<PrivateRoute><Form_Recipes /></PrivateRoute>} />
           <Route path="/Create_ingredients" element={<PrivateRoute><Form_ingredients /></PrivateRoute>} />
           <Route path="/recipes_a" element={ <PrivateRoute><Recipes_admin /></PrivateRoute>}/>

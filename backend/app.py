@@ -1,5 +1,5 @@
 import base64
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, session
 import pymysql
 from database import db, ma
 from models.recipe import Recipe
@@ -13,18 +13,18 @@ from models.ingredients import Ingredients
 from models.recipe_ingredients import Recipe_Ingredients
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
-
+from functools import wraps
 import os
 import hashlib
 
 pymysql.install_as_MySQLdb()
-
 app = Flask(__name__)
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/db_easyrecipe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/images'
+
 db.init_app(app)
 ma.init_app(app)
 
@@ -173,9 +173,9 @@ def get_users():
         response.append(users_data)
     return jsonify(response)
 
-@app.route('/users/<int:user_id>', methods=['GET'])
-def get_user(user_id):
-    user = Users.query.get_or_404(user_id)
+@app.route('/users/<string:userN>', methods=['GET'])
+def get_user(userN):
+    user = Users.query.filter_by(username=userN).first_or_404()
     image_base64 = base64.b64encode(user.image).decode('utf-8') if user.image else None
     user_data = {
         'user_id': user.user_id,
@@ -510,16 +510,48 @@ def login_admin():
         return jsonify({'error': 'User does not have admin role'}), 403
 
 
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    fullname = data.get('fullname')
+    email = data.get('email')
+    username = data.get('username')
+    password = data.get('password')
 
+    if Users.query.filter_by(username=username).first() or Users.query.filter_by(email=email).first():
+        return jsonify({'error': 'User already exists'}), 400
 
+    password_hash = custom_generate_password_hash(password)
+    new_user = Users(
+        fullname=fullname,
+        email=email,
+        username=username,
+        password=password_hash,
+        roles="Member",
+        image_filename=None,
+        image=None,
+    )
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User registered successfully'}), 201
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    if not username or not password:
+        return jsonify({'error': 'Username and password required'}), 400
 
+    user = Users.query.filter_by(username=username).first()
 
+    if user and custom_check_password_hash(user.password_hash, password):
+        # Assuming a successful login returns some user data or a token
+        return jsonify({'message': 'Login successful', 'user': {'username': user.username}}), 200
+    else:
+        return jsonify({'error': 'Invalid credentials'}), 401
+    
 
-
-def init_db():
-    with app.app_context():
-        db.create_all()
 
 def init_db():
     with app.app_context():

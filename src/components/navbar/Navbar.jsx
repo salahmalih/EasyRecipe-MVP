@@ -1,12 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { Link, useLocation } from 'react-router-dom';
+import { AccountCircle, Settings } from '@mui/icons-material';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 import logo from '../../logo.png';
 import './navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const location = useLocation();
+  const [username, setUsername] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const user = Cookies.get('L_user');
+      if (user) {
+        setUsername(user);
+        try {
+          const response = await axios.get(`http://localhost:5000/users/${user}`);
+          const imageBase64 = response.data.image;
+          setProfileImage(imageBase64 ? `data:image/png;base64,${imageBase64}` : null);
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+        }
+      } else {
+        setUsername(null);
+        setProfileImage(null);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
 
   useEffect(() => {
     if (toggleMenu) {
@@ -25,7 +53,7 @@ const Navbar = () => {
         setToggleMenu(false); // Close the menu when a link is clicked
       }
     };
-
+   
     return (
       <li>
         <Link to={to} className={`page-link_A page-item ${isActive ? 'active' : ''}`} onClick={handleClick}>
@@ -49,12 +77,13 @@ const Navbar = () => {
         setToggleMenu(false); // Close the menu when a link is clicked
       }
     };
+    const isActive = location.pathname === scrollTo;
 
     return (
       <li>
-        <a href={to} className="page-link_A page-item" onClick={handleClick}>
+        <Link to={to}  className={`page-link_A page-item ${isActive ? 'active' : ''}`} onClick={handleClick}>
           {children}
-        </a>
+        </Link>
       </li>
     );
   };
@@ -69,12 +98,29 @@ const Navbar = () => {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/recipes">All Recipes</NavLink>
           <NavLink to="/favourite">Favourite</NavLink>
-          <NavPages to="/" scrollTo="#aboutus">What is EasyRecipe?</NavPages>
+          <NavPages to="/home" scrollTo="#aboutus">What is EasyRecipe?</NavPages>
         </ul>
       </div>
       <div className="recipe__navbar-sign">
-        <p>Sign in</p>
-        <button type="button">Sign up</button>
+        {username ? (
+          <>
+            <Link to="/profile">
+              {profileImage ? (
+                <img src={profileImage} alt="Profile" className="profile-image" />
+              ) : (
+                <AccountCircle fontSize="large" />
+              )}
+            </Link>
+            <Link to="/settings">
+              <Settings fontSize="large" style={{ color: '#fff' , paddingLeft:'10px'}}  />
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login"><p>Sign in</p></Link>
+            <Link to="/signup"><button type="button">Sign up</button></Link>
+          </>
+        )}
       </div>
       <div className="recipe__navbar-menu">
         {toggleMenu
@@ -89,8 +135,25 @@ const Navbar = () => {
               <NavPages to="/" scrollTo="#aboutus">What is EasyRecipe?</NavPages>
             </ul>
             <div className="recipe__navbar-menu_container-links-sign">
-              <p>Sign in</p>
-              <button type="button">Sign up</button>
+              {username ? (
+                <>
+                  <Link to="/profile">
+                    {profileImage ? (
+                      <img src={profileImage} alt="Profile" className="profile-image" />
+                    ) : (
+                      <AccountCircle fontSize="large" />
+                    )}
+                  </Link>
+                  <Link to="/settings">
+                    <Settings fontSize="large" style={{ color: '#fff' ,paddingLeft:'10px'}}  />
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login"><p>Sign in</p></Link>
+                  <Link to="/signup"><button type="button">Sign up</button></Link>
+                </>
+              )}
             </div>
           </div>
         )}
