@@ -198,3 +198,17 @@
     overflow: hidden;
   }
 }
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.profile-all{
+  color: #fff ;
+  padding-Left:10px;
+  cursor:pointer;
+}
+.exit-a{
+  color: #fff ;
+  cursor:pointer;
+}

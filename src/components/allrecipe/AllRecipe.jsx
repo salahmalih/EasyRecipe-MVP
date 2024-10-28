@@ -21,14 +21,12 @@ const AllRecipe = ({ recipes }) => {
 
   return (
     <div className="recipe__recipe section__padding" id="recipe">
-      <div className="recipe__recipe-heading">
-        <h1 className="gradient__text">ALL Recipes</h1>
-      </div>
       <div className="recipe__recipe-container">
         <div className="recipe__recipe-container_groupA">
           {firstRecipe && (
             <div className="recipe__recipe-container_groupA_1">
               <Article
+                recipe_id= {firstRecipe.recipe_id}
                 imgUrl={`data:image/png;base64,${firstRecipe.image}`}
                 date={formatDate(firstRecipe.date)}
                 title={firstRecipe.title}
@@ -39,6 +37,7 @@ const AllRecipe = ({ recipes }) => {
           {secondRecipe && (
             <div className="recipe__recipe-container_groupA_2">
               <Article
+                recipe_id= {secondRecipe.recipe_id}
                 imgUrl={`data:image/png;base64,${secondRecipe.image}`}
                 date={formatDate(secondRecipe.date)}
                 title={secondRecipe.title}
@@ -51,6 +50,7 @@ const AllRecipe = ({ recipes }) => {
           {remainingRecipes.map(recipe => (
             <div key={recipe.recipe_id} className="recipe__recipe-item">
               <Article
+                recipe_id= {recipe.recipe_id}
                 imgUrl={`data:image/png;base64,${recipe.image}`}
                 date={formatDate(recipe.date)}
                 title={recipe.title}

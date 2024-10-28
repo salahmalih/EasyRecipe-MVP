@@ -25,22 +25,22 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   }
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="paginatio_pre">
         {pageNumbers.map((number, index) =>
           typeof number === 'number' ? (
-            <li key={index} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-              <a onClick={() => paginate(number)} href="#!" className="page-link">
+            <li key={index} className={`page-item-a ${currentPage === number ? 'active' : ''}`}>
+              <a onClick={() => paginate(number)} href="#!" className="page-link-a">
                 {number}
               </a>
             </li>
           ) : (
-            <li key={index} className="page-item">
-              <span className="page-link">{number}</span>
+            <li key={index} className="page-item-a">
+              <span className="page-link-a">{number}</span>
             </li>
           )
         )}
-        <li key={nextpage} className="page-item">
-              <a onClick={() => paginate(nextpage)} href="#!" className="page-link">
+        <li key={nextpage} className="page-item-a">
+              <a onClick={() => paginate(nextpage)} href="#!" className="page-link-a">
                 Next
               </a>
             </li>

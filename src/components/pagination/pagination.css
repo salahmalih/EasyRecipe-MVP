@@ -1,25 +1,25 @@
 /* pagination.css */
-.pagination {
+.paginatio_pre{
     display: flex;
     justify-content: center;
     list-style: none;
     padding: 0;
     padding-bottom: 2rem;
   }
-  .page-item {
+  .page-item-a {
     margin: 0 5px;
   }
-  .page-link {
+  .page-link-a {
     padding: 10px 15px;
     border: 1px solid #ddd;
     text-decoration: none;
     color: #ffffff;
     cursor: pointer;
   }
-  .page-link:hover {
+  .page-link-a:hover {
     background-color: var(--color-footer);
   }
-  .page-item.active .page-link {
+  .page-item-a.active .page-link-a {
     background-color: var(--color-blog);
     color: white;
     border-color: var(--color-blog);
