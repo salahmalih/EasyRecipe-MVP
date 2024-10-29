@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {AllRecipe, Pagination} from '../../components'; // Import your AllRecipe component
-
-
+import './recipes.css'
 function Recipes() {
   const [recipes, setRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +27,9 @@ function Recipes() {
   
   return (
     <div>
+           <div className="recipe__recipe-heading">
+        <h1 className="gradient__text">ALL Recipes</h1>
+      </div>
       <AllRecipe recipes={currentPosts} />
       <Pagination
         postsPerPage={postsPerPage}

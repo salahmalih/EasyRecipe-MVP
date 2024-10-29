@@ -1,0 +1,8 @@
+.gradient__text{
+    display: flex;
+    width: 100%;
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
