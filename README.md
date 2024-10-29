@@ -72,7 +72,8 @@ Feel free to contribute by submitting issues or pull requests. For significant c
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Screenshots
-![EasyRecipe Screenshot](![alt text](image.png))
+![image](https://github.com/user-attachments/assets/d4ce4aba-8cd6-4da1-8142-968a0534cd53)
+
 
 ## Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and utilizes Flask for the backend.
